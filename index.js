@@ -1,10 +1,8 @@
 function detectIssueId (ref) {
-    const reg = /^(feature|fix|improve|solve|tmp)-(\d+)/i
+    const reg = /^(feature|fix|improve|solve|update)-(\d+)/i
     const matches = reg.exec(ref) || []
     return matches[2]
 }
-
-console.log('pem:', process.env.PRIVATE_KEY)
 
 module.exports = robot => {
     robot.on('pull_request.opened', async context => {
@@ -15,7 +13,7 @@ module.exports = robot => {
         if (!issueId) return
 
         const comment = context.issue({
-            body: `solve #${issueId}`
+            body: ` resolve #${issueId} `
         })
 
         // create comment
