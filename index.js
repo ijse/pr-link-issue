@@ -30,8 +30,8 @@ module.exports = robot => {
                 direction: 'desc',
                 per_page: 1
             }))
-            if (milestone && milestone[0]) {
-                const curMilestone = milestone[0]
+            if (milestones && milestones[0]) {
+                const curMilestone = milestones[0]
 
                 // set milestone
                 const pr = context.issues()
