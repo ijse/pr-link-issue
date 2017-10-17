@@ -10,6 +10,7 @@ module.exports = robot => {
         const pr = context.payload.pull_request
         const branchName = pr.head.ref
 
+        console.log('check pr: ', pr.number)
         // link with issue
         const issueId = detectIssueId(branchName)
         if (issueId) {
@@ -17,6 +18,7 @@ module.exports = robot => {
                 body: ` resolve #${issueId} `
             })
 
+            console.log('link issue: ', issueId)
             // create comment
             context.github.issues.createComment(comment)
         }
@@ -28,11 +30,13 @@ module.exports = robot => {
                 state: 'open',
                 sort: 'due_on',
                 direction: 'desc',
-                per_page: 1
+                per_page: 3
             }))
+            console.log('milestone list:', milestones)
             if (milestones && milestones[0]) {
                 const curMilestone = milestones[0]
 
+                console.log('set milestone:', curMilestone)
                 // set milestone
                 context.github.issues.edit(context.issue({
                     number: pr.number,
