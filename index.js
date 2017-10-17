@@ -31,7 +31,7 @@ module.exports = robot => {
                 sort: 'due_on',
                 direction: 'desc',
                 per_page: 3
-            })).then(milestones => {
+            })).then(({ data: milestones })=> {
                 console.log('milestone list:', milestones)
                 if (milestones && milestones[0]) {
                     const curMilestone = milestones[0]
