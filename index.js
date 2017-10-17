@@ -26,23 +26,24 @@ module.exports = robot => {
         // check milestone
         const isMilestoneSetted = !!pr.milestone
         if (!isMilestoneSetted) {
-            const milestones = context.github.issues.getMilestones(context.repo({
+            context.github.issues.getMilestones(context.repo({
                 state: 'open',
                 sort: 'due_on',
                 direction: 'desc',
                 per_page: 3
-            }))
-            console.log('milestone list:', milestones)
-            if (milestones && milestones[0]) {
-                const curMilestone = milestones[0]
+            })).then(milestones => {
+                console.log('milestone list:', milestones)
+                if (milestones && milestones[0]) {
+                    const curMilestone = milestones[0]
 
-                console.log('set milestone:', curMilestone)
-                // set milestone
-                context.github.issues.edit(context.issue({
-                    number: pr.number,
-                    milestone: curMilestone.number
-                }))
-            }
+                    console.log('set milestone:', curMilestone)
+                    // set milestone
+                    context.github.issues.edit(context.issue({
+                        number: pr.number,
+                        milestone: curMilestone.number
+                    }))
+                }
+            })
         }
     })
 }
