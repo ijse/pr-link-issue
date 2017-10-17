@@ -34,8 +34,8 @@ module.exports = robot => {
                 const curMilestone = milestones[0]
 
                 // set milestone
-                const pr = context.issues()
                 context.github.issues.edit(context.issue({
+                    number: pr.number,
                     milestone: curMilestone.number
                 }))
             }
