@@ -1,5 +1,5 @@
 function detectIssueId (ref) {
-    const reg = /^(feature|fix|hotfix|improve|solve|update)-(\d+)/i
+    const reg = /^(feature|fix|hotfix|fixbug|bugfix|improve|solve|update)-(\d+)/i
     const matches = reg.exec(ref) || []
     return matches[2]
 }
