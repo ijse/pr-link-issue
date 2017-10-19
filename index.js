@@ -45,5 +45,14 @@ module.exports = robot => {
                 }
             })
         }
+
+        // set assignee
+        const hasAssignee = !!pr.assignees.length
+        if (!hasAssignee) {
+            context.github.issues.edit(context.issue({
+                number: pr.number,
+                assignee: pr.user.login
+            }))
+        }
     })
 }
