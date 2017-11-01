@@ -10,6 +10,7 @@ module.exports = robot => {
         const pr = context.payload.pull_request
         const branchName = pr.head.ref
 
+        pr.body = pr.body || ''
         console.log('check pr: ', pr.number)
         // link with issue
         const issueId = detectIssueId(branchName)
