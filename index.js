@@ -17,7 +17,7 @@ module.exports = robot => {
             const ctn = pr.body.replace(/resolve #(\d+)/g, '')
             const newIssue = context.issue({
                 number: pr.number,
-                body: ctn += `\n\n resolve #${issueId} `
+                body: ctn + `\n\n resolve #${issueId} `
             })
 
             console.log('link issue: ', issueId)
