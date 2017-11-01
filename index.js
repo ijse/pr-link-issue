@@ -14,13 +14,14 @@ module.exports = robot => {
         // link with issue
         const issueId = detectIssueId(branchName)
         if (issueId) {
-            const comment = context.issue({
-                body: ` resolve #${issueId} `
+            const newIssue = context.issue({
+                number: pr.number,
+                body: pr.number += ` resolve #${issueId} `
             })
 
             console.log('link issue: ', issueId)
             // create comment
-            context.github.issues.createComment(comment)
+            context.github.issues.edit(newIssue)
         }
 
         // check milestone
