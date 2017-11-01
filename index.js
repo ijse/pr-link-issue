@@ -54,5 +54,12 @@ module.exports = robot => {
                 assignee: pr.user.login
             }))
         }
+
+        // default set wip status
+        const wipTitle = pr.title.replace(/\bwip\b/g, '') + ' wip'
+        context.github.issues.edit(context.issue({
+            number: pr.number,
+            title: wipTitle
+        }))
     })
 }
