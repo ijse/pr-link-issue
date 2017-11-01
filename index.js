@@ -14,9 +14,10 @@ module.exports = robot => {
         // link with issue
         const issueId = detectIssueId(branchName)
         if (issueId) {
+            const ctn = pr.body.replace(/resolve #(\d+)/g, '')
             const newIssue = context.issue({
                 number: pr.number,
-                body: pr.number += ` resolve #${issueId} `
+                body: ctn += `\n\n resolve #${issueId} `
             })
 
             console.log('link issue: ', issueId)
