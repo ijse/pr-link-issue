@@ -57,5 +57,18 @@ module.exports = robot => {
                 assignee: pr.user.login
             }))
         }
+
+        // add labels
+        const isFeature = /\[adde?d?\]/ig.test(pr.title)
+        const isBug = /\[fixe?d?\]/ig.test(pr.title)
+        const isImprove = /\[improve.*\]/ig.test(pr.title)
+        const labels = []
+        if (isFeature) labels.push('type:feature')
+        if (isBug) labels.push('type:bug')
+        if (isImprove) labels.push('type:improvement')
+        context.github.issues.addLabels(context.repo({
+            number: pr.number,
+            labels: labels
+        }))
     })
 }
