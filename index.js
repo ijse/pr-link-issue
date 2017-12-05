@@ -21,7 +21,7 @@ module.exports = robot => {
         const reviewersList = reviewers.map(r => USERMAP[r]).join(' ')
         axios.post('http://bot.ijser.cn/api/ding', {
             to: 'fe',
-            msg: `${USERMAP[pr.sender.login]} 喊 ${reviewersList} 来Review代码 ${url} !`
+            msg: `${USERMAP[pr.user.login]} 喊 ${reviewersList} 来Review代码 ${url} !`
         })
     })
     robot.on('pull_request.opened', async context => {
