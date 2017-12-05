@@ -1,10 +1,29 @@
+const axios = require('axios')
+
 function detectIssueId (ref) {
     const reg = /^(feature|fix|hotfix|fixbug|bugfix|improve|solve|update)-(\d+)/i
     const matches = reg.exec(ref) || []
     return matches[2]
 }
 
+const USERMAP = {
+    'ijse': '@清凌渡',
+    'wang-jia': '@王佳',
+    'gao-jx': '@jianxun gao',
+    'liushumei': '@刘淑美'
+}
+
 module.exports = robot => {
+    robot.on('pull_request.review_requested', async context => {
+        const pr = context.payload.pull_request
+        const reviewers = pr.requested_reviewers.map(r => r.login)
+        const url = pr.html_url
+        const reviewersList = reviewers.map(r => USERMAP[r]).join(' ')
+        axios.post('http://bot.ijser.cn/api/ding', {
+            to: 'fe',
+            msg: `${USERMAP[pr.sender.login]} 喊 ${reviewersList} 来Review代码 ${url} !`
+        })
+    })
     robot.on('pull_request.opened', async context => {
         const repo = context.repo()
         const pr = context.payload.pull_request

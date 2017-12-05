@@ -10,6 +10,7 @@
     "test": "mocha && standard"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "probot": "^0.7.2"
   },
   "devDependencies": {
@@ -19,7 +20,7 @@
     "standard": "^10.0.3"
   },
   "engines": {
-    "node": "^8.6.0",
+    "node": ">=8.6.0",
     "npm": ">= 4.0.0"
   }
 }
