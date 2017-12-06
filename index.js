@@ -19,7 +19,8 @@ module.exports = robot => {
         const pr = payload.pull_request
         const reviewers = pr.requested_reviewers.map(r => r.login)
         const url = pr.html_url
-        const reviewer = USERMAP[payload.requested_reviewer.login].name
+        const reviewer = USERMAP[payload.requested_reviewer.login]
+            || payload.requested_reviewer.login
         axios.post('http://bot.ijser.cn/api/ding', {
             to: 'fe',
             msg: `${USERMAP[pr.user.login]} 喊 ${reviewer} 来Review代码 ${url} !`
