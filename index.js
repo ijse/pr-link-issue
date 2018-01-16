@@ -14,6 +14,7 @@ const USERMAP = {
 }
 
 module.exports = robot => {
+    /*
     robot.on('pull_request.review_requested', async context => {
         const payload = context.payload
         const pr = payload.pull_request
@@ -26,6 +27,7 @@ module.exports = robot => {
             msg: `${USERMAP[pr.user.login]} 喊 ${reviewer} 来Review代码 ${url} !`
         })
     })
+    */
     robot.on('pull_request.opened', async context => {
         const repo = context.repo()
         const pr = context.payload.pull_request
