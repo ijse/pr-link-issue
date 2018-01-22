@@ -10,6 +10,7 @@ const USERMAP = {
     'ijse': '@清凌渡',
     'wang-jia': '@王佳',
     'gao-jx': '@jianxun gao',
+    'JeannieMa': '@马柳菁',
     'liushumei': '@刘淑美'
 }
 
@@ -49,6 +50,7 @@ module.exports = robot => {
             context.github.issues.edit(newIssue)
         }
 
+        /*
         // check milestone
         const isMilestoneSetted = !!pr.milestone
         if (!isMilestoneSetted) {
@@ -71,6 +73,7 @@ module.exports = robot => {
                 }
             })
         }
+        */
 
         // set assignee
         const hasAssignee = !!pr.assignees.length
