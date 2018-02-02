@@ -23,7 +23,7 @@ module.exports = robot => {
         const reviewer = USERMAP[payload.requested_reviewer.login]
             || payload.requested_reviewer.login
         axios.post('http://bot.ijser.cn/api/ding', {
-            to: 'fe',
+            to: 'publish',
             msg: `${USERMAP[pr.user.login]} 喊 ${reviewer} 来Review代码 ${url} !`
         })
     })
