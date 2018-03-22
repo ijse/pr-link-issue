@@ -11,7 +11,9 @@ const USERMAP = {
     'wang-jia': '@王佳',
     'gao-jx': '@jianxun gao',
     'JeannieMa': '@马柳菁',
-    'liushumei': '@刘淑美'
+    'liushumei': '@刘淑美',
+    'pengcui123': '@彭翠',
+    'zhangsundanfeng': '@长孙丹凤'
 }
 
 module.exports = robot => {
